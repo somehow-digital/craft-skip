@@ -1,0 +1,46 @@
+{
+	"name": "somehow-digital/craft-skip",
+	"description": "Disable auto-reloading of Twig templates in production.",
+	"type": "craft-plugin",
+	"keywords": ["twig", "template", "cache", "config", "reload", "performance"],
+	"license": "MIT",
+	"homepage": "https://somehow.digital/",
+	"authors": [
+		{
+			"name": "Thomas Deinhamer",
+			"email": "code@thasmo.dev",
+			"homepage": "https://thasmo.com/"
+		}
+	],
+	"support": {
+		"email": "support@somehow.digital",
+		"docs": "https://github.com/somehow-digital/craft-skip",
+		"source": "https://github.com/somehow-digital/craft-skip",
+		"issues": "https://github.com/somehow-digital/craft-skip/issues"
+	},
+	"config": {
+		"optimize-autoloader": true,
+		"sort-packages": true,
+		"allow-plugins": {
+			"craftcms/plugin-installer": true,
+			"yiisoft/yii2-composer": true
+		}
+	},
+	"require": {
+		"php": "^8.2",
+		"craftcms/cms": "^5.8.0"
+	},
+	"require-dev": {
+		"roave/security-advisories": "dev-latest"
+	},
+	"autoload": {
+		"psr-4": {
+			"SomehowDigital\\Craft\\Skip\\": "src/"
+		}
+	},
+	"extra": {
+		"name": "Skip",
+		"handle": "skip",
+		"class": "SomehowDigital\\Craft\\Skip\\Skip"
+	}
+}
