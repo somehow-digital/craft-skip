@@ -2,9 +2,9 @@
 
 namespace SomehowDigital\Craft\Skip;
 
-use Craft;
 use craft\base\Event;
 use craft\base\Plugin;
+use craft\helpers\App;
 use craft\web\View;
 
 class Skip extends Plugin
@@ -13,7 +13,7 @@ class Skip extends Plugin
 	{
 		parent::init();
 
-		if (!Craft::$app->getConfig()->getGeneral()->devMode) {
+		if (!App::devMode() || App::isEphemeral()) {
 			Event::on(
 				View::class,
 				View::EVENT_AFTER_CREATE_TWIG,
