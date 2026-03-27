@@ -24,5 +24,11 @@ composer require somehow-digital/craft-skip
 
 ## Configuration
 
-Configuration is not available. When [`Dev Mode`](https://craftcms.com/knowledge-base/what-dev-mode-does) is disabled, 
-the plugin will automatically disable auto-reloading of Twig templates.
+Configuration is not available.
+
+## Usage
+
+Auto-reloading of Twig templates is disabled if at least one of the following conditions is met:
+
+* [`Dev Mode`](https://craftcms.com/knowledge-base/what-dev-mode-does) is disabled.
+* [`Ephemeral`](https://craftcms.com/docs/5.x/reference/config/bootstrap.html#craft-ephemeral) is enabled.
