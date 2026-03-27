@@ -41,6 +41,9 @@
 	"extra": {
 		"name": "Skip",
 		"handle": "skip",
-		"class": "SomehowDigital\\Craft\\Skip\\Skip"
+		"class": "SomehowDigital\\Craft\\Skip\\Skip",
+		"branch-alias": {
+			"dev-main": "1.x-dev"
+		}
 	}
 }
