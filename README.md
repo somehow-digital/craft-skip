@@ -1,3 +1,5 @@
+<img src="src/icon.svg" alt="Skip Logo" width="96" height="96" />
+
 # `Skip` for Craft CMS
 > Disables auto-reloading of [Twig](https://twig.symfony.com/) templates in production for [Craft CMS](https://craftcms.com/).
 
@@ -32,3 +34,7 @@ Auto-reloading of Twig templates is disabled if at least one of the following co
 
 * [`Dev Mode`](https://craftcms.com/knowledge-base/what-dev-mode-does) is disabled.
 * [`Ephemeral`](https://craftcms.com/docs/5.x/reference/config/bootstrap.html#craft-ephemeral) is enabled.
+
+---
+
+[somehow digital.](https://somehow-digital)
