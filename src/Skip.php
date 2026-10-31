@@ -4,6 +4,7 @@ namespace SomehowDigital\Craft\Skip;
 
 use craft\base\Event;
 use craft\base\Plugin;
+use craft\events\CreateTwigEvent;
 use craft\helpers\App;
 use craft\web\View;
 
@@ -17,7 +18,7 @@ class Skip extends Plugin
 			Event::on(
 				View::class,
 				View::EVENT_AFTER_CREATE_TWIG,
-				function (Event $event) {
+				function (CreateTwigEvent $event) {
 					$event->twig->disableAutoReload();
 				}
 			);
