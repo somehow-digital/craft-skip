@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SomehowDigital\Craft\Skip\Tests\Support;
 
 use Craft;
@@ -27,12 +29,12 @@ class App
 		$configService->appType = 'web';
 		$configService->env = 'test';
 		$configService->configDir = Craft::getAlias('@config');
-		$configService->appDefaultsDir = "$src/config/defaults";
+		$configService->appDefaultsDir = "{$src}/config/defaults";
 
 		$config = ArrayHelper::merge(
 			['vendorPath' => CRAFT_VENDOR_PATH, 'env' => 'test', 'components' => ['config' => $configService]],
-			require "$src/config/app.php",
-			require "$src/config/app.web.php",
+			require "{$src}/config/app.php",
+			require "{$src}/config/app.web.php",
 			[
 				'isInstalled' => false,
 				'components' => [
@@ -42,17 +44,13 @@ class App
 			],
 		);
 
-		/** @var Application $app */
-		$app = Craft::createObject($config);
+		unset($config['class']);
+		$app = new Application($config);
 
 		// Tests run on the command line, which requests take for console requests.
 		$app->getRequest()->setIsConsoleRequest(false);
 
-		/** @var Skip $plugin */
-		$plugin = Craft::createObject([
-			'class' => Skip::class,
-			'basePath' => dirname(__DIR__, 2) . '/src',
-		], ['skip', $app]);
+		$plugin = new Skip('skip', $app, ['basePath' => dirname(__DIR__, 2) . '/src']);
 
 		Skip::setInstance($plugin);
 		$app->setModule('skip', $plugin);

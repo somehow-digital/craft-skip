@@ -1,0 +1,53 @@
+# The plugin's layers and which of them each may depend on.
+#
+# A layer is a plugin namespace. Unlisted framework code is open to every layer.
+# `deptrac debug:unassigned` fails for plugin classes outside any layer. Class rules live in
+# tests/Architecture/ArchitectureRules.php.
+#
+#   Plugin           the composition root, registering event handlers
+
+parameters:
+  plugin: 'SomehowDigital\\Craft\\Skip'
+
+deptrac:
+  paths:
+    - ./src
+
+  analyser:
+    types:
+      - class
+      - class_superglobal
+      - function
+      - function_call
+      - function_superglobal
+      - use
+
+  layers:
+    - name: Plugin
+      collectors:
+        - type: classNameRegex
+          value: '#^%plugin%\\Skip$#'
+
+    # Not shipped, so no layer depends on them.
+    - name: Tests
+      collectors:
+        - type: classNameRegex
+          value: '#^%plugin%\\Tests\\#'
+
+    # Craft wraps these, so no layer reads them.
+    - name: Superglobals
+      collectors:
+        - type: superglobal
+          value:
+            - _COOKIE
+            - _ENV
+            - _FILES
+            - _GET
+            - _POST
+            - _REQUEST
+            - _SERVER
+            - _SESSION
+            - GLOBALS
+
+  ruleset:
+    Plugin: ~

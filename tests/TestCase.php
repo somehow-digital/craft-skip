@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SomehowDigital\Craft\Skip\Tests;
 
 use Craft;
@@ -31,7 +33,6 @@ abstract class TestCase extends BaseTestCase
 		}
 
 		Event::offAll();
-		Craft::$app = null;
 		Craft::$container = new Container();
 
 		parent::tearDown();
