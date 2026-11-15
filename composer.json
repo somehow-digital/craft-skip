@@ -23,7 +23,7 @@
 		"email": "support@somehow.digital",
 		"issues": "https://github.com/somehow-digital/craft-skip/issues",
 		"source": "https://github.com/somehow-digital/craft-skip",
-		"docs": "https://github.com/somehow-digital/craft-skip"
+		"docs": "https://craft-skip.somehow-digital.dev"
 	},
 	"require": {
 		"php": "^8.2",
