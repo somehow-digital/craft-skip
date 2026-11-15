@@ -1,10 +1,25 @@
 includes:
+	- vendor/phpstan/phpstan/conf/bleedingEdge.neon
 	- vendor/craftcms/phpstan/phpstan.neon
+	- vendor/pestphp/pest/extension.neon
+	- vendor/pestphp/pest/phpstan-pest-extension.neon
+	- vendor/phpstan/phpstan-strict-rules/rules.neon
+	- vendor/phpstan/phpstan-deprecation-rules/rules.neon
+	- vendor/shipmonk/phpstan-rules/rules.neon
+	- vendor/tomasvotruba/cognitive-complexity/config/extension.neon
 
 parameters:
-	level: 5
+	level: 10
+	# The supported PHP range, not just the running version.
+	phpVersion:
+		min: 80200
+		max: 80599
+	reportUnmatchedIgnoredErrors: true
+	checkUninitializedProperties: true
+	checkTooWideReturnTypesInProtectedAndPublicMethods: true
 	paths:
 		- src
+		- tests
 	earlyTerminatingMethodCalls:
 		Craft:
 			- dd
@@ -12,3 +27,18 @@ parameters:
 			- end
 		yii\base\ErrorHandler:
 			- convertExceptionToError
+	bootstrapFiles:
+		- tests/PHPStan/bootstrap.php
+	shipmonkRules:
+		# Craft and Yii configure objects through public properties.
+		enforceReadonlyPublicProperty:
+			enabled: false
+		# Yii's exceptions are checked, and thrown from callbacks throughout Craft.
+		forbidCheckedExceptionInCallable:
+			enabled: false
+
+services:
+	-
+		class: SomehowDigital\Craft\Skip\Tests\PHPStan\PestClosureThisExtension
+		tags:
+			- phpstan.functionParameterClosureThisExtension

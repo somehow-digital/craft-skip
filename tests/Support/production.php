@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * Prints whether Twig reloads templates with dev mode disabled.
  *

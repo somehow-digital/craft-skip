@@ -1,0 +1,16 @@
+# Runs only the architecture rules of phpat, which has no runner of its own and runs on PHPStan.
+includes:
+	- vendor/phpat/phpat/extension.neon
+
+parameters:
+	level: 0
+	paths:
+		- src
+	phpat:
+		show_rule_names: true
+
+services:
+	-
+		class: SomehowDigital\Craft\Skip\Tests\Architecture\ArchitectureRules
+		tags:
+			- phpat.test
